@@ -1,6 +1,7 @@
 package org.launchcode.spaday.controllers;
 
 
+import org.launchcode.spaday.data.UserData;
 import org.launchcode.spaday.models.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +21,11 @@ public class UserController {
     public String processAddUserForm(Model model, @ModelAttribute User user, String verify) {
         // if pass matches verify
         if (user.getPassword().equals(verify)) {
+            model.addAttribute("username", user.getUsername());
+            model.addAttribute("email", user.getEmail());
+
+            UserData.add(user);
+            model.addAttribute("users", UserData.getAll());
 
             return "user/index";
         } else {

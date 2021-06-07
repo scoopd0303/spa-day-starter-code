@@ -8,5 +8,19 @@
 
     <h1 th:text="'Welcome ' + ${user.username} + '!'">Welcome!</h1>
     <a th:href="@{/}">Service Selection</a>
+
+    <table>
+        <thead>
+        <tr>
+            <td>USERNAME</td>
+        </tr>
+        </thead>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.username}"></td>
+            <td><a th:href="@{/}">details</a></td>
+        </tr>
+    </table>
+
+
 </body>
 </html>
